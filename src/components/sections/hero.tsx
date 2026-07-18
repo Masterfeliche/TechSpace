@@ -50,13 +50,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.14 }}
-            className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg"
+            className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            Practical engineering.
+            DIT&apos;s engineering lab for builders who ship.
             <br />
-            Real projects.
-            <br />
-            Future AI innovators.
+            Practical learning. Real products. Software engineers first.
           </motion.p>
 
           <motion.div
@@ -65,8 +63,10 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.22 }}
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
-            <Link
-              href="#join"
+            <a
+              href={siteConfig.links.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "h-11 px-5 bg-primary text-primary-foreground hover:bg-primary/90"
@@ -74,7 +74,7 @@ export function Hero() {
             >
               Join Community
               <ArrowRight data-icon="inline-end" />
-            </Link>
+            </a>
             <Link
               href="#projects"
               className={cn(

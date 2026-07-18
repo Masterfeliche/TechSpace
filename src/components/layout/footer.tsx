@@ -22,6 +22,14 @@ export function Footer() {
               of Technology. We build software engineers first — then AI
               innovators.
             </p>
+            <a
+              href={siteConfig.links.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            >
+              Join the WhatsApp community →
+            </a>
           </div>
 
           <div>

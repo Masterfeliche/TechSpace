@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/fade-in";
@@ -28,21 +27,23 @@ export function JoinCta() {
                 Ready to Build the Future?
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Become a member of TechSpace and train as a software engineer
+                Join the WhatsApp community to train as a software engineer
                 through practical learning, collaboration, and real products —
                 then grow into the future of technology at DIT.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Link
-                  href={siteConfig.links.email}
+                <a
+                  href={siteConfig.links.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "h-11 px-6 bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                 >
-                  Become a Member
+                  Join Community
                   <ArrowRight data-icon="inline-end" />
-                </Link>
+                </a>
                 <a
                   href={siteConfig.links.email}
                   className={cn(

@@ -66,13 +66,15 @@ export function Navbar() {
             GitHub
           </a>
           <a
-            href={siteConfig.links.join}
+            href={siteConfig.links.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
             className={cn(
               buttonVariants({ size: "sm" }),
               "bg-primary text-primary-foreground hover:bg-primary/90"
             )}
           >
-            Join TechSpace
+            Join Community
           </a>
         </div>
 
@@ -115,14 +117,16 @@ export function Navbar() {
               GitHub
             </a>
             <a
-              href={siteConfig.links.join}
+              href={siteConfig.links.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className={cn(
                 buttonVariants(),
                 "w-full bg-primary text-primary-foreground hover:bg-primary/90"
               )}
             >
-              Join TechSpace
+              Join Community
             </a>
           </div>
         </div>

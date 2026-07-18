@@ -11,7 +11,9 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/company/dit-techspace",
     instagram: "https://www.instagram.com/dit.techspace",
     email: "mailto:techspace@dit.ac.tz",
-    join: "/#join",
+    // Replace with your TechSpace WhatsApp community invite URL
+    whatsapp: "https://chat.whatsapp.com/techspace-dit",
+    join: "https://chat.whatsapp.com/techspace-dit",
   },
   nav: [
     { label: "About", href: "/#about" },
@@ -207,6 +209,38 @@ export const events = [
     description:
       "Talks from builders, alumni, and industry practitioners on engineering and product.",
     cadence: "Ongoing",
+  },
+] as const;
+
+/** Set to an event object to feature it, or null for the empty state. */
+export const upcomingEvent: {
+  title: string;
+  description: string;
+  dateLabel: string;
+  location: string;
+  href?: string;
+} | null = null;
+
+export const partners = [
+  {
+    name: "DIT",
+    fullName: "Dar es Salaam Institute of Technology",
+    role: "Host institution",
+  },
+  {
+    name: "Software Engineering",
+    fullName: "Engineering-first curriculum",
+    role: "Core focus",
+  },
+  {
+    name: "Product Teams",
+    fullName: "Cross-functional delivery",
+    role: "How we build",
+  },
+  {
+    name: "Open Source",
+    fullName: "Public collaboration",
+    role: "Culture",
   },
 ] as const;
 
