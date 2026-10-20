@@ -119,22 +119,64 @@ export const rhythm = [
 ] as const;
 
 /**
- * Leadership is a set of roles with clear responsibilities, held by members and rotated.
- * Add real people with `holder` (name) once they are confirmed — the site never shows
- * invented names or stock photos of people.
+ * The Executive Council: five seats, one-semester terms. Add the person's name as
+ * `holder` once a seat is filled; the site shows "Seat open" until then.
  */
 export const council: {
   title: string;
-  responsibility: string;
+  owns: string;
+  measure: string;
   holder?: string;
 }[] = [
-  { title: "Founder", holder: "Feliche Baptista & Esther Kazinja", responsibility: "Guards the culture, removes blockers and plans the handover so TechSpace outlives any one generation." },
-  { title: "Council (3–5 members)", responsibility: "Decides which products get resources and who joins the Build layer. Seats rotate every semester." },
-  { title: "Product Leads", responsibility: "Each owns one product: delivery, quality, the team's demo and its one metric." },
-  { title: "Mentors", responsibility: "Senior members, alumni and lecturers who give a fixed two hours a week to teams." },
-  { title: "Learning Lead", responsibility: "Runs the open Learn layer: sessions, roadmap and the first mentored projects." },
-  { title: "Community Lead", responsibility: "Runs the rhythm — demo days, hackathons, open houses — and tells the community's story." },
+  {
+    title: "Learning Lead",
+    owns: "The open Learn layer: weekly sessions, the roadmap and onboarding new members.",
+    measure: "Members who finish their first mentored project",
+  },
+  {
+    title: "Product Lead",
+    owns: "The Build layer: approves product teams, runs Demo Day and caps active products.",
+    measure: "Products shipped and their weekly users",
+  },
+  {
+    title: "Community Lead",
+    owns: "Events, hackathons, social media and telling the TechSpace story.",
+    measure: "New members and event turnout",
+  },
+  {
+    title: "Partnerships Lead",
+    owns: "Companies, internships, DIT departments, mentors and sponsors.",
+    measure: "Mentors recruited and internships placed",
+  },
+  {
+    title: "Operations Lead",
+    owns: "Meetings, records, budget, the member list and elections (secretary and treasurer).",
+    measure: "Things run on time; finances are transparent",
+  },
 ];
+
+/** The rules that keep leadership earned and rotating. */
+export const councilRules = [
+  "Seats are earned: you must have shipped something or mentored someone to stand.",
+  "One seat per person, at most two terms in a row, so new leaders keep coming through.",
+  "Every leader trains a deputy for the next term, so handovers are smooth.",
+  "The Council publishes a short State of TechSpace report every semester.",
+] as const;
+
+/** Who decides what. */
+export const decisionRights = [
+  { who: "Founders", what: "Mission, the manifesto and major partnerships. Rare decisions." },
+  { who: "Council (majority vote)", what: "Which products get resources, who joins Build, events and spending." },
+  { who: "Product teams", what: "Everything inside their own product." },
+  { who: "Members", what: "Elect the Council each semester and pitch products at hackathons and open houses." },
+] as const;
+
+/** How the structure grows with the community. */
+export const leadershipStages = [
+  { stage: "Under 30 active members", shape: "Founders plus three seats: Learning & Community combined, Product, and Partnerships. Founders cover Operations." },
+  { stage: "30–80 members", shape: "All five Council seats filled." },
+  { stage: "80+ members", shape: "Each seat gets a deputy, and all product team leads form a Product Council." },
+] as const;
 
 export type ProductStatus = "Live" | "Building" | "Recruiting" | "Idea";
 

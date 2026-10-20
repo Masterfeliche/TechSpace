@@ -3,7 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { FounderCard } from "@/components/people/founder-card";
 import { ButtonLink } from "@/components/shared/ui";
-import { council, founders, foundingStory, mentors } from "@/lib/community";
+import {
+  council,
+  councilRules,
+  decisionRights,
+  founders,
+  foundingStory,
+  leadershipStages,
+  mentors,
+} from "@/lib/community";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -58,9 +66,11 @@ export default function PeoplePage() {
       <section aria-labelledby="leadership" className={`${wrap} py-20`}>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 id="leadership" className="h-section">Leadership council</h2>
-            <p className="mt-3 max-w-[560px] text-lg text-muted-foreground">
-              Roles, not titles. Seats rotate every semester so TechSpace outlives any one generation.
+            <p className="eyebrow mb-4">Executive Council</p>
+            <h2 id="leadership" className="h-section">Five seats. One semester each.</h2>
+            <p className="mt-3 max-w-[600px] text-lg text-muted-foreground">
+              Roles, not titles. Every seat owns something specific and is measured by results, and seats rotate so
+              TechSpace outlives any one generation.
             </p>
           </div>
           <ButtonLink href="/apply" variant="ghost">
@@ -68,15 +78,61 @@ export default function PeoplePage() {
           </ButtonLink>
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {council
-            .filter((role) => role.title !== "Founder")
-            .map((role) => (
-              <article key={role.title} className="rounded-2xl border border-border bg-card p-6">
-                <p className="eyebrow text-[12px] text-brand">{role.title}</p>
-                <p className="mt-2 text-lg font-semibold">{role.holder ?? "Seat open"}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{role.responsibility}</p>
-              </article>
-            ))}
+          {council.map((seat) => (
+            <article key={seat.title} className="flex flex-col rounded-2xl border border-border bg-card p-6">
+              <p className="eyebrow text-[12px] text-brand">{seat.title}</p>
+              <p className="mt-2 text-lg font-semibold">{seat.holder ?? "Seat open"}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{seat.owns}</p>
+              <p className="mt-auto border-t border-border pt-3 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">Measured by: </span>
+                {seat.measure}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="how-leadership-works" className="bg-surface py-20">
+        <div className={wrap}>
+          <h2 id="how-leadership-works" className="h-section">How leadership works</h2>
+          <div className="mt-10 grid gap-12 lg:grid-cols-3">
+            <div>
+              <h3 className="eyebrow mb-4">The rules</h3>
+              <ol className="space-y-4">
+                {councilRules.map((rule, i) => (
+                  <li key={rule} className="grid grid-cols-[32px_minmax(0,1fr)] gap-2 leading-relaxed">
+                    <span className="font-mono text-brand">0{i + 1}</span>
+                    <span>{rule}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div>
+              <h3 className="eyebrow mb-4">Who decides what</h3>
+              <dl>
+                {decisionRights.map((d) => (
+                  <div key={d.who} className="border-t border-border-strong py-3 last:border-b">
+                    <dt className="font-semibold">{d.who}</dt>
+                    <dd className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{d.what}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div>
+              <h3 className="eyebrow mb-4">How it grows</h3>
+              <ol>
+                {leadershipStages.map((s) => (
+                  <li key={s.stage} className="border-t border-border-strong py-3 last:border-b">
+                    <p className="font-semibold">{s.stage}</p>
+                    <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{s.shape}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                From year two, the founders step back to an advisory role and the Council runs TechSpace day to day.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
