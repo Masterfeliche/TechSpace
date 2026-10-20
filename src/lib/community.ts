@@ -289,9 +289,9 @@ export const founders: {
   {
     name: "Feliche Baptista",
     title: "Founder",
-    focus: "Solving local problems with technology · built Kairos",
+    focus: "Software · AI · Data analytics · Problem solving",
     bio:
-      "Feliche started TechSpace to close the gap between what students learn in class and the standard the industry expects. The work starts with problems close to home: Kairos turned DIT's 160-page timetable PDF into a live, mobile-first timetable for every class.",
+      "Feliche works across software engineering, artificial intelligence and data analytics, with a focus on solving real problems close to home. Kairos is one example: it turned DIT's 160-page timetable PDF into a live, mobile-first timetable for every class. Feliche started TechSpace to close the gap between what students learn in class and the standard the industry expects.",
     links: [
       { label: "GitHub", href: "https://github.com/Masterfeliche" },
       { label: "Email", href: "mailto:felichebaptista17@yahoo.com" },
@@ -300,9 +300,9 @@ export const founders: {
   {
     name: "Esther Kazinja",
     title: "Co-founder",
-    focus: "Certified Go systems developer",
+    focus: "Go systems · Databases · GIS · Product development",
     bio:
-      "Esther is a certified Go systems developer and co-founded TechSpace to bring industry-grade engineering practice to DIT students, so that what members build in the community holds up to the standard of real production systems.",
+      "Esther is a certified Go systems developer who works on backend systems, databases and GIS, and on turning ideas into products people can use. Esther co-founded TechSpace to bring that industry-grade engineering and product practice to DIT students, so what members build holds up in the real world.",
     links: [],
   },
 ];
