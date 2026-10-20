@@ -128,7 +128,7 @@ export const council: {
   responsibility: string;
   holder?: string;
 }[] = [
-  { title: "Founder", responsibility: "Guards the culture, removes blockers and plans the handover so TechSpace outlives any one generation." },
+  { title: "Founder", holder: "Feliche Baptista & Esther Kazinja", responsibility: "Guards the culture, removes blockers and plans the handover so TechSpace outlives any one generation." },
   { title: "Council (3–5 members)", responsibility: "Decides which products get resources and who joins the Build layer. Seats rotate every semester." },
   { title: "Product Leads", responsibility: "Each owns one product: delivery, quality, the team's demo and its one metric." },
   { title: "Mentors", responsibility: "Senior members, alumni and lecturers who give a fixed two hours a week to teams." },
@@ -230,3 +230,41 @@ export const applicationTimeline: { step: string; date: string | null }[] = [
   { step: "Decisions by email", date: null },
   { step: "Cohort starts with the first Demo Day", date: null },
 ];
+
+/**
+ * The founders, shown on /people and the home page. Add `image` (a path under
+ * /public, e.g. "/people/feliche.jpg") once there is a real photo; until then an
+ * initials tile is shown. Never use stock photos of strangers here.
+ */
+export const founders: {
+  name: string;
+  title: string;
+  focus: string;
+  bio: string;
+  image?: string;
+  links: { label: string; href: string }[];
+}[] = [
+  {
+    name: "Feliche Baptista",
+    title: "Founder",
+    focus: "Solving local problems with technology · built Kairos",
+    bio:
+      "Feliche started TechSpace to close the gap between what students learn in class and the standard the industry expects. The work starts with problems close to home: Kairos turned DIT's 160-page timetable PDF into a live, mobile-first timetable for every class.",
+    links: [
+      { label: "GitHub", href: "https://github.com/Masterfeliche" },
+      { label: "Email", href: "mailto:felichebaptista17@yahoo.com" },
+    ],
+  },
+  {
+    name: "Esther Kazinja",
+    title: "Co-founder",
+    focus: "Certified Go systems developer",
+    bio:
+      "Esther is a certified Go systems developer and co-founded TechSpace to bring industry-grade engineering practice to DIT students, so that what members build in the community holds up to the standard of real production systems.",
+    links: [],
+  },
+];
+
+/** Why TechSpace exists, in the founders' words. */
+export const foundingStory =
+  "We started TechSpace to bridge the gap between the classroom and industry-level standards for students.";

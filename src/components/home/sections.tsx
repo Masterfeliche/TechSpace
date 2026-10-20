@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink, Tag, textLink } from "@/components/shared/ui";
+import { FounderCard } from "@/components/people/founder-card";
 import {
-  council,
   demoDayPhoto,
   essays,
+  founders,
+  foundingStory,
   layers,
-  mentors,
   metrics,
   products,
   rhythm,
@@ -209,44 +210,26 @@ export function DemoDay() {
   );
 }
 
-/** Mentors and alumni when confirmed; until then, the open leadership seats. */
+/** The founders up front, with a link to the full People page. */
 export function People() {
   return (
     <section id="people" className="scroll-mt-24 border-t border-border py-24">
       <div className={wrap}>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="h-section max-w-[680px]">
-            {mentors.length > 0 ? "Every mentor shipped something first." : "Roles, not titles. Rotated, not owned."}
-          </h2>
-          <ButtonLink href="/apply" variant="ghost">
-            {mentors.length > 0 ? "Become a mentor" : "Apply for a seat"}
+          <div>
+            <p className="eyebrow mb-4">Founders</p>
+            <h2 className="h-section max-w-[680px]">Started by builders, for builders.</h2>
+            <p className="mt-4 max-w-[560px] text-lg leading-relaxed text-muted-foreground">{foundingStory}</p>
+          </div>
+          <ButtonLink href="/people" variant="ghost">
+            Meet the team
           </ButtonLink>
         </div>
-        {mentors.length > 0 ? (
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {mentors.map((m) => (
-              <div key={m.name}>
-                {m.image ? (
-                  <div className="relative aspect-square overflow-hidden rounded-xl bg-surface">
-                    <Image src={m.image} alt={m.name} fill sizes="(max-width: 640px) 100vw, 25vw" className="object-cover" />
-                  </div>
-                ) : null}
-                <p className="mt-3 font-semibold">{m.name}</p>
-                <p className="text-sm text-muted-foreground">{m.role} · built {m.built}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {council.map((role) => (
-              <article key={role.title} className="rounded-2xl border border-border bg-card p-6">
-                <p className="eyebrow text-[12px] text-brand">{role.title}</p>
-                <p className="mt-2 text-lg font-semibold">{role.holder ?? "Seat open"}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{role.responsibility}</p>
-              </article>
-            ))}
-          </div>
-        )}
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {founders.map((founder) => (
+            <FounderCard key={founder.name} founder={founder} compact />
+          ))}
+        </div>
       </div>
     </section>
   );
