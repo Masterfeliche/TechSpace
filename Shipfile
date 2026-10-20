@@ -1,0 +1,6 @@
+# deploy.tz build/run configuration (https://docs.deploy.tz/docs/shipfile.html).
+# Builds the static site into out/ and serves it on port 8080.
+script: |
+  npm install
+  npm run export
+run: npx serve out -p 8080

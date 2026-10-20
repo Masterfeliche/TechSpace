@@ -1,11 +1,13 @@
 import type { NextConfig } from "next";
 
+// Static export: `npm run export` writes plain HTML/CSS/JS to out/, which deploy.tz
+// serves with `serve out` (see Shipfile). No Node server runs in production, so
+// server-only features are replaced: /join forwards in the browser, images are not
+// optimised on the fly.
 const nextConfig: NextConfig = {
-  async redirects() {
-    // /join was the application URL before the YC-style redesign.
-    return [{ source: "/join", destination: "/apply", permanent: true }];
-  },
+  output: "export",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -13,6 +15,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Linting runs separately (`npm run lint`); a host without ESLint shouldn't fail the build.
+  eslint: { ignoreDuringBuilds: true },
 };
 
 export default nextConfig;
