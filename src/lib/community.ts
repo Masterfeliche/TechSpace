@@ -185,8 +185,48 @@ export const products: {
 
 /** The questions asked by the /join application. */
 export const applicationTracks = [
-  { value: "learn", label: "Learn — I'm starting out and want the roadmap" },
-  { value: "build", label: "Build — I want to join a product team" },
-  { value: "mentor", label: "Mentor — I've shipped and want to teach" },
-  { value: "partner", label: "Partner — I represent a company, lab or department" },
+  { value: "learn", label: "Learn — Start with the roadmap" },
+  { value: "build", label: "Build — Join a product team" },
+  { value: "mentor", label: "Mentor — I've shipped; I'll teach" },
+  { value: "partner", label: "Partner — Company, lab or department" },
 ] as const;
+
+/**
+ * The deadline bar at the top of every page. Set to null to hide it.
+ * Example: { label: "Semester II 2026", deadline: "15 November" }
+ */
+export const announcement: { label: string; deadline: string } | null = null;
+
+/**
+ * "What we measure". The band stays hidden until every value is a real number.
+ * Update once a semester.
+ */
+export const metrics: { value: string | null; label: string }[] = [
+  { value: null, label: "Products live" },
+  { value: null, label: "Weekly users across products" },
+  { value: null, label: "Builders who shipped in the last 90 days" },
+  { value: null, label: "Mentoring hours given" },
+];
+
+/** "In builders' words" — real quotes only; the section is hidden while empty. */
+export const voices: { quote: string; name: string; role: string }[] = [];
+
+/** Mentors and alumni shown under "Every mentor shipped something first". */
+export const mentors: { name: string; role: string; built: string; image?: string }[] = [];
+
+/** Library essays. `href` may be an internal page or an external post. */
+export const essays: { title: string; href: string }[] = [
+  { title: "The TechSpace Manifesto", href: "/manifesto" },
+];
+
+/** Demo-day photo for the home page (put real photos in /public). */
+export const demoDayPhoto: { src: string; alt: string } | null = null;
+
+/** The /apply timeline. A step without a date shows "To be announced". */
+export const applicationTimeline: { step: string; date: string | null }[] = [
+  { step: "Applications open", date: null },
+  { step: "Deadline", date: null },
+  { step: "15-minute conversations", date: null },
+  { step: "Decisions by email", date: null },
+  { step: "Cohort starts with the first Demo Day", date: null },
+];

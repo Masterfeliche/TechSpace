@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Container } from "@/components/shared/container";
-import { FadeIn } from "@/components/shared/fade-in";
-import { buttonVariants } from "@/components/ui/button";
-import { flywheel, manifesto } from "@/lib/community";
+import { ButtonLink } from "@/components/shared/ui";
+import { essays, flywheel, manifesto } from "@/lib/community";
 import { siteConfig } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Manifesto",
@@ -19,91 +15,71 @@ export const metadata: Metadata = {
 };
 
 export default function ManifestoPage() {
+  const more = essays.filter((e) => e.href !== "/manifesto");
   return (
-    <main id="main" className="pt-28 pb-24 sm:pt-32">
-      <Container className="max-w-3xl">
-        <FadeIn>
-          <p className="text-xs font-medium tracking-[0.18em] text-cyan uppercase">
-            {manifesto.title}
+    <main id="main" className="pt-24 pb-28">
+      <article className="mx-auto max-w-[680px] section-pad">
+        <p className="eyebrow">
+          <Link href="/manifesto" className="hover:text-primary">Library</Link> / Essay
+        </p>
+        <h1 className="mt-5 text-[clamp(40px,5vw,60px)] font-semibold leading-[1.04] tracking-[-0.035em]">
+          {manifesto.title}
+        </h1>
+        <p className="mt-5 mb-12 font-mono text-[13px] text-muted-foreground">TechSpace · Dar es Salaam Institute of Technology</p>
+
+        <p className="mb-6 text-2xl leading-snug font-medium tracking-[-0.01em]">{manifesto.lede}</p>
+        {manifesto.preamble.map((paragraph) => (
+          <p key={paragraph.slice(0, 24)} className="mb-6 text-[19px] leading-[1.75] text-[#292524]">
+            {paragraph}
           </p>
-          <h1 className="mt-5 font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
-            {manifesto.lede}
-          </h1>
-          {manifesto.preamble.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              {paragraph}
-            </p>
+        ))}
+
+        <figure className="my-12 rounded-2xl bg-foreground p-7 text-white">
+          <p className="eyebrow text-[#a8a29e]">The builder loop</p>
+          <p className="mt-3.5 text-[26px] leading-snug font-semibold tracking-[-0.02em]">
+            {flywheel.map((s) => s.step).join(" → ")} <span className="text-primary">→ Learn</span>
+          </p>
+          <figcaption className="mt-2.5 text-[#d6d3d1]">If an activity doesn&apos;t move someone along the loop, we stop doing it.</figcaption>
+        </figure>
+
+        <h2 className="mt-16 mb-2 text-3xl font-semibold tracking-[-0.02em]">What we believe</h2>
+        <ol>
+          {manifesto.principles.map((principle, i) => (
+            <li key={principle.title} className="grid grid-cols-[48px_minmax(0,1fr)] gap-2 border-t border-border py-7 last:border-b">
+              <span className="font-mono text-brand">0{i + 1}</span>
+              <div>
+                <h3 className="text-[21px] font-semibold">{principle.title}</h3>
+                <p className="mt-2 text-lg leading-[1.7] text-ink-muted">{principle.body}</p>
+              </div>
+            </li>
           ))}
-        </FadeIn>
+        </ol>
 
-        <section aria-labelledby="believe" className="mt-16">
-          <h2 id="believe" className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            What we believe
-          </h2>
-          <ol className="mt-8 space-y-8">
-            {manifesto.principles.map((principle, index) => (
-              <FadeIn key={principle.title} as="li" delay={0.03 * index}>
-                <div className="grid gap-2 sm:grid-cols-[3rem_1fr]">
-                  <span className="font-mono text-sm text-primary">0{index + 1}</span>
-                  <div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground">
-                      {principle.title}
-                    </h3>
-                    <p className="mt-2 leading-relaxed text-muted-foreground">{principle.body}</p>
-                  </div>
-                </div>
-              </FadeIn>
+        <h2 className="mt-16 mb-5 text-3xl font-semibold tracking-[-0.02em]">What every member commits to</h2>
+        <ul className="list-disc space-y-2 pl-5 text-lg leading-[1.7] text-[#292524] marker:text-primary">
+          {manifesto.commitments.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
+        </ul>
+
+        <p className="mt-14 text-2xl leading-snug font-semibold tracking-[-0.01em]">{manifesto.closing}</p>
+        <div className="mt-6">
+          <ButtonLink href="/apply">Apply to TechSpace →</ButtonLink>
+        </div>
+
+        {more.length > 0 ? (
+          <nav aria-label="More essays" className="mt-20 border-t border-foreground pt-7">
+            <p className="eyebrow mb-3">More from the library</p>
+            {more.map((e) => (
+              <p key={e.title} className="mb-2.5">
+                <Link href={e.href} className="text-lg font-medium underline decoration-border-strong underline-offset-4 hover:text-primary">
+                  {e.title} →
+                </Link>
+              </p>
             ))}
-          </ol>
-        </section>
-
-        <section aria-labelledby="loop" className="mt-16 rounded-2xl border border-border bg-card p-6 sm:p-8">
-          <h2 id="loop" className="font-heading text-2xl font-bold text-foreground">
-            The builder loop
-          </h2>
-          <p className="mt-4 font-heading text-lg font-semibold text-primary">
-            {flywheel.map((s) => s.step).join(" → ")} → back to Learn
-          </p>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            Every activity at TechSpace should move someone one step along this loop. If it
-            doesn&apos;t, we stop doing it.
-          </p>
-        </section>
-
-        <section aria-labelledby="commit" className="mt-16">
-          <h2 id="commit" className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            What every member commits to
-          </h2>
-          <ul className="mt-6 space-y-3">
-            {manifesto.commitments.map((commitment) => (
-              <li key={commitment} className="flex gap-3 leading-relaxed text-foreground">
-                <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-cyan" />
-                {commitment}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <FadeIn>
-          <div className="mt-16 border-t border-border pt-10">
-            <p className="font-heading text-2xl font-semibold leading-snug text-foreground text-balance">
-              {manifesto.closing}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/join"
-                className={cn(buttonVariants({ size: "lg" }), "h-11 px-6 bg-primary text-primary-foreground hover:bg-primary/90")}
-              >
-                Apply to join
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-              <Link href="/#how-it-works" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 px-6")}>
-                How TechSpace works
-              </Link>
-            </div>
-          </div>
-        </FadeIn>
-      </Container>
+          </nav>
+        ) : null}
+      </article>
     </main>
   );
 }

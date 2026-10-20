@@ -2,131 +2,74 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { GitHubIcon } from "@/components/shared/icons";
+import { ButtonLink, Logo } from "@/components/shared/ui";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border bg-background/70 backdrop-blur-xl"
-          : "bg-transparent"
-      )}
-    >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between section-pad lg:h-[4.25rem]">
-        <Link
-          href="/"
-          className="font-heading text-lg font-bold tracking-tight text-foreground transition-colors hover:text-primary"
-        >
-          TechSpace
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
+      <nav aria-label="Main" className="mx-auto flex min-h-[72px] max-w-[1200px] items-center gap-6 section-pad">
+        <Link href="/" aria-label="TechSpace home">
+          <Logo />
         </Link>
 
-        <div className="hidden items-center gap-1 lg:flex">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="hidden flex-1 items-center gap-0.5 md:flex">
+          {siteConfig.nav.map((item) => {
+            const active = !item.href.includes("#") && pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "rounded-lg px-3 py-2.5 text-[15px] font-medium text-foreground transition-colors hover:bg-surface",
+                  active && "bg-surface",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          <a
-            href={siteConfig.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            <GitHubIcon className="size-4" />
-            GitHub
-          </a>
-          <Link
-            href="/join"
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "bg-primary text-primary-foreground hover:bg-primary/90"
-            )}
-          >
-            Apply to join
-          </Link>
-        </div>
+        <ButtonLink href="/apply" size="md" className="ml-auto hidden md:inline-flex">
+          Apply
+        </ButtonLink>
 
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-lg border border-border text-foreground lg:hidden"
+          className="ml-auto inline-flex size-11 items-center justify-center rounded-lg text-foreground md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
+          aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
       </nav>
 
-      <div
-        className={cn(
-          "border-b border-border bg-background/95 backdrop-blur-xl lg:hidden",
-          open ? "block" : "hidden"
-        )}
-      >
-        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3">
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(buttonVariants({ variant: "outline" }), "w-full")}
-            >
-              <GitHubIcon className="size-4" />
-              GitHub
-            </a>
-            <Link
-              href="/join"
-              onClick={() => setOpen(false)}
-              className={cn(
-                buttonVariants(),
-                "w-full bg-primary text-primary-foreground hover:bg-primary/90"
-              )}
-            >
-              Apply to join
-            </Link>
+      {open ? (
+        <div id="mobile-menu" className="border-t border-border bg-background md:hidden">
+          <div className="mx-auto flex max-w-[1200px] flex-col section-pad py-3">
+            {siteConfig.nav.map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-surface">
+                {item.label}
+              </Link>
+            ))}
+            <ButtonLink href="/apply" className="mt-3 mb-2 w-full">
+              Apply to TechSpace
+            </ButtonLink>
           </div>
         </div>
-      </div>
+      ) : null}
     </header>
   );
 }

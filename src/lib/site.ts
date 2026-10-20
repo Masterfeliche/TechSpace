@@ -16,11 +16,11 @@ export const siteConfig = {
     join: "/join",
   },
   nav: [
-    { label: "Manifesto", href: "/manifesto" },
-    { label: "How it works", href: "/#how-it-works" },
+    { label: "Programs", href: "/#programs" },
     { label: "Products", href: "/products" },
+    { label: "Library", href: "/manifesto" },
     { label: "Events", href: "/events" },
-    { label: "Leadership", href: "/#leadership" },
+    { label: "People", href: "/#people" },
   ],
 } as const;
 
@@ -142,13 +142,3 @@ export const pastEvents = [
     },
   },
 ] as const;
-
-export const heroImage = {
-  src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
-  alt: "Software engineers collaborating around laptops in a modern workspace",
-} as const;
-
-export const eventsPageHeroImage = {
-  src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80",
-  alt: "Community members collaborating during a TechSpace learning session",
-} as const;

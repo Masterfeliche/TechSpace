@@ -1,19 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import { Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
   display: "swap",
 });
@@ -27,7 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Engineering Laboratory at DIT`,
+    default: `${siteConfig.name} | The builder community at DIT`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -63,8 +57,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#020617",
-  colorScheme: "dark",
+  themeColor: "#f5f5ee",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -75,15 +69,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} dark`}
+      className={`${geist.variable} ${geistMono.variable}`}
     >
       <body className="min-h-svh bg-background text-foreground">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-3 focus:py-2 focus:text-primary-foreground"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-primary focus:text-white focus:px-3 focus:py-2 "
         >
           Skip to content
         </a>
+        <AnnouncementBar />
         <Navbar />
         {children}
         <Footer />
