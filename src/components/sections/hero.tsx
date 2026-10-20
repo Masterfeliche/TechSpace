@@ -41,9 +41,8 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.06 }}
             className="mt-5 font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1] text-balance"
           >
-            Building the Next Generation
-            <br className="hidden sm:block" /> of Software Engineers
-            <br className="hidden sm:block" /> at DIT.
+            Build things
+            <br className="hidden sm:block" /> people actually use.
           </motion.h1>
 
           <motion.p
@@ -52,9 +51,9 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.14 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            DIT&apos;s engineering lab for builders who ship.
-            <br />
-            Practical learning. Real products. Software engineers first.
+            TechSpace is where DIT students become people who ship products
+            that real people use — learn, build, ship, then teach the next
+            builder.
           </motion.p>
 
           <motion.div
@@ -63,26 +62,24 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.22 }}
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
-            <a
-              href={siteConfig.links.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/join"
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "h-11 px-5 bg-primary text-primary-foreground hover:bg-primary/90"
               )}
             >
-              Join Community
+              Apply to join
               <ArrowRight data-icon="inline-end" />
-            </a>
+            </Link>
             <Link
-              href="#projects"
+              href="/manifesto"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
                 "h-11 px-5"
               )}
             >
-              Explore Projects
+              Read the manifesto
             </Link>
           </motion.div>
         </div>

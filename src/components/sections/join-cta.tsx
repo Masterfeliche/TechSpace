@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { FadeIn } from "@/components/shared/fade-in";
@@ -24,34 +25,34 @@ export function JoinCta() {
                 Join TechSpace
               </p>
               <h2 className="mt-4 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl text-balance">
-                Ready to Build the Future?
+                Ready to ship something real?
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Join the WhatsApp community to train as a software engineer
-                through practical learning, collaboration, and real products —
-                then grow into the future of technology at DIT.
+                Start in the open Learn layer, apply to a product team, or
+                mentor the next builders. We look at what you want to build,
+                not your grades.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href={siteConfig.links.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/join"
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "h-11 px-6 bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                 >
-                  Join Community
+                  Apply to join
                   <ArrowRight data-icon="inline-end" />
-                </a>
+                </Link>
                 <a
-                  href={siteConfig.links.email}
+                  href={siteConfig.links.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
                     "h-11 px-6"
                   )}
                 >
-                  Contact Us
+                  Follow on WhatsApp
                 </a>
               </div>
             </div>

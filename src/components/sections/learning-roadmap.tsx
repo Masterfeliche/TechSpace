@@ -10,9 +10,9 @@ export function LearningRoadmap() {
       <Container className="relative">
         <FadeIn>
           <SectionHeading
-            eyebrow="Learning Roadmap"
+            eyebrow="Layer 1 · The Learn roadmap"
             title="A deliberate path from foundations to AI."
-            description="We build software engineers first. Members progress through practical milestones before specializing in emerging domains."
+            description="Software engineers first, then specialists. Every stage ends with something you built and showed at demo day."
           />
         </FadeIn>
 

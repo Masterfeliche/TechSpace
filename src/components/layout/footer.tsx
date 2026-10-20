@@ -18,18 +18,15 @@ export function Footer() {
               <span className="text-primary">TechSpace</span>
             </p>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-              A student-led engineering laboratory at the Dar es Salaam Institute
-              of Technology. We build software engineers first — then AI
-              innovators.
+              The builder community of the Dar es Salaam Institute of
+              Technology. Learn, build, ship, then teach the next builder.
             </p>
-            <a
-              href={siteConfig.links.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/join"
               className="mt-4 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
             >
-              Join the WhatsApp community →
-            </a>
+              Apply to join →
+            </Link>
           </div>
 
           <div>

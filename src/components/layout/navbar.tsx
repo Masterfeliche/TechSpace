@@ -65,17 +65,15 @@ export function Navbar() {
             <GitHubIcon className="size-4" />
             GitHub
           </a>
-          <a
-            href={siteConfig.links.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/join"
             className={cn(
               buttonVariants({ size: "sm" }),
               "bg-primary text-primary-foreground hover:bg-primary/90"
             )}
           >
-            Join Community
-          </a>
+            Apply to join
+          </Link>
         </div>
 
         <button
@@ -116,18 +114,16 @@ export function Navbar() {
               <GitHubIcon className="size-4" />
               GitHub
             </a>
-            <a
-              href={siteConfig.links.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/join"
               onClick={() => setOpen(false)}
               className={cn(
                 buttonVariants(),
                 "w-full bg-primary text-primary-foreground hover:bg-primary/90"
               )}
             >
-              Join Community
-            </a>
+              Apply to join
+            </Link>
           </div>
         </div>
       </div>

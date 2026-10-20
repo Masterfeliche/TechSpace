@@ -42,4 +42,17 @@ src/
 
 ## Content
 
-Update community copy, projects, leadership, and links in `src/lib/site.ts`.
+- `src/lib/community.ts`: the manifesto, the builder loop, the three layers, the rhythm,
+  leadership roles and products. Add a person to a role with `holder` once confirmed;
+  only list product links that really work.
+- `src/lib/site.ts`: site name, links, navigation, roadmap and events.
+- `docs/MANIFESTO.md`: the manifesto for print and onboarding (keep in sync with
+  `community.ts`).
+
+## Pages
+
+- `/`: the builder loop, layers, roadmap, products, rhythm, leadership
+- `/manifesto`: what TechSpace believes and what members commit to
+- `/products`: products and how one moves from idea to launch
+- `/join`: the application (opens the applicant's email app; swap in a form service later)
+- `/events`: upcoming and past events
